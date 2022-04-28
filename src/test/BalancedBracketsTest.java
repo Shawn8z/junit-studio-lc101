@@ -14,13 +14,13 @@ public class BalancedBracketsTest {
     //TODO: add tests here
 
     @Test
-    public void balancedBrackets() {
+    public void balancedBracketsReturnTrue() {
         String testStr = "Launch[Code]";
         assertTrue(BalancedBrackets.hasBalancedBrackets(testStr));
     }
 
     @Test
-    public void bracketsOrderWrongReturnFalse() {
+    public void bracketsUnorderedReturnFalse() {
         String testStr = "Launch]Code[";
         assertFalse(BalancedBrackets.hasBalancedBrackets(testStr));
     }
@@ -38,7 +38,7 @@ public class BalancedBracketsTest {
     }
 
     @Test
-    public void multiLayerWrongOrderBracketsReturnFalse() {
+    public void multiLayerUnorderedBracketsReturnFalse() {
         String testStr = "]Launch[Code][";
         assertFalse(BalancedBrackets.hasBalancedBrackets(testStr));
     }
@@ -53,5 +53,41 @@ public class BalancedBracketsTest {
     public void emptyBalancedBracketsBetweenWordsReturnFalse() {
         String testStr = "Launch[]Code";
         assertFalse(BalancedBrackets.hasBalancedBrackets(testStr));
+    }
+
+    @Test
+    public void onlyEmptyBalancedBracketsWithRightOrderReturnTrue() {
+        String testStr = "[]";
+        assertTrue(BalancedBrackets.hasBalancedBrackets(testStr));
+    }
+
+    @Test
+    public void onlyEmptyBalancedBracketsWithWrongOrderReturnFalse() {
+        String testStr = "][";
+        assertFalse(BalancedBrackets.hasBalancedBrackets(testStr));
+    }
+
+    @Test
+    public void emptyOrderedNestedBalancedBracketsReturnTrue() {
+        String testStr = "[[[]]]";
+        assertTrue(BalancedBrackets.hasBalancedBrackets(testStr));
+    }
+
+    @Test
+    public void emptyUnNestedBracketsReturnTrue() {
+        String testStr = "[][][]";
+        assertTrue(BalancedBrackets.hasBalancedBrackets(testStr));
+    }
+
+    @Test
+    public void unBalancedBracketsReturnFalse() {
+        String testStr = "[LaunchCode";
+        assertFalse(BalancedBrackets.hasBalancedBrackets(testStr));
+    }
+
+    @Test
+    public void balancedBracketsAtTheEndWithWordsReturnTrue() {
+        String testStr = "LaunchCode[]";
+        assertTrue(BalancedBrackets.hasBalancedBrackets(testStr));
     }
 }

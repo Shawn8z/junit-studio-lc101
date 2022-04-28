@@ -28,24 +28,44 @@ public class BalancedBrackets {
         int strArrayLength = strArray.length;
 
         if (str.equals("")) {
+            // if str is a empty str return false right away
             return false;
         } else {
             for (char ch : strArray) {
                 if (ch == '[') {
+                    // if found a '[' add 1 to openbrackets
                     openBrackets += 1;
                 } else if (ch == ']' && openBrackets != 0) {
+                    // if found ']' and there is at least one preceding '[' add 1 to closeBrackets
                     closeBrackets += 1;
                 }
             }
         }
 
+        // if openBrackets count equals closeBrackets count
+        // and they both do not equal to 0 then return true else return false
         boolean result = openBrackets == closeBrackets && openBrackets > 0;
 
-        if (result && strArrayLength > 2) {
+
+
+        // if the whole string is not just brackets then test these
+        if (openBrackets + closeBrackets != strArrayLength) {
+
+            // see if there is an empty "[]" at the front of the word
             if (strArray[0] == '[' && strArray[1] == ']') {
                 return false;
             }
+            //see if there is a empty "[]" between words
+            if ((str.indexOf('[') + 1 == str.indexOf(']'))) {
+
+                //and make sure when when "[]" is at the end will not count
+                if (str.indexOf(']') != strArrayLength - 1) {
+                    return false;
+                }
+
+            }
         }
+
 
         return result;
     }
