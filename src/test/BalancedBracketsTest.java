@@ -1,7 +1,6 @@
 package test;
 
 import main.BalancedBrackets;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
